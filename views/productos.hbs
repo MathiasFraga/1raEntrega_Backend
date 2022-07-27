@@ -1,0 +1,91 @@
+<script>
+    const borrarProd = (id) => {
+        fetch('borrar/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },    
+        })
+            .then(response => location.reload())
+            .catch((e) => console.log("error: ", e));
+    }
+
+    const addToCart = (id) => {
+    fetch('/api/carrito/guardar/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => console.log("agregado"))
+            .catch((e) => console.log("error: ", e));
+    }
+  
+</script>
+
+<style>
+    .table td, .table th {
+        vertical-align: middle;
+    }
+    h1 {
+        color: blue;
+    }
+    hr {
+        background-color: #ddd;
+    }
+    .jumbotron {
+        min-height: 100vh;
+        text-align: center;
+    }
+     .carDefin {
+                position: relative;
+                width: 18rem;
+                border: 1px solid black;
+                border-radius: 5px;
+                text-align: center;
+            }
+
+            .contenedor {
+                display: flex;
+                flex-flow: wrap;
+                justify-content: space-around;
+                border-radius: 5px;
+            }
+</style>
+
+<div class="jumbotron">
+    <h1>Lista de Productos</h1>
+    <br>
+    {{#if existenProductos}} 
+            <div class="contenedor">
+                {{#each productos}}                   
+                    <div class="carDefin">
+                        <p class="card-text">ID Producto: {{id}}</p>
+                        <img class="card-img-top" src=/{{thumbnail}} alt="not found">
+                        <div class="card-body">
+                            <h5 class="card-title">{{title}}</h5>
+                            <p class="card-text">Descripcion: {{descripcion}}
+                            </p>
+                            <p class="card-text">PRECIO $ {{price}}</p>
+                            <p class="card-text">STOCK: {{stock}}
+                            </p>
+                            <p class="card-text" style="font-size: 10px;">Codigo: {{codigo}}
+                            </p>
+                           {{#if true}}
+                            <a class="btn btn-sm btn-danger" onclick="borrarProd({{id}})" >BORRAR</a>
+                            <a class="btn btn-sm btn-success" onclick="addToCart({{id}})" >AGREGAR A CARRITO</a>
+
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/each}}           
+            </div>        
+    {{else}}  
+        <h3 class="alert alert-warning">No se encontraron productos</h3>
+    {{/if}} 
+    <br><hr>
+    {{#if true}}
+      <a class="btn btn-sm btn-warning" href="/modifyProducto.html">MODIFICAR PRODUCTOS</a>
+    {{/if}}
+    <a href="/"><button class="btn btn-success">Ir a cargar Productos</button></a>
+</div>

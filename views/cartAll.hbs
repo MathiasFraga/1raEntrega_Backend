@@ -1,0 +1,77 @@
+<script>
+     const borrarCart = (idcar) => {
+         console.log(idcar)
+        fetch('/api/carrito/borrar/' + idcar, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },    
+        })
+            .then(response => location.reload())
+            .catch((e) => console.log("error: ", e));
+    }
+</script>
+<style>
+    .table td, .table th {
+        vertical-align: middle;
+    }
+    h1 {
+        color: blue;
+    }
+    hr {
+        background-color: #ddd;
+    }
+    .jumbotron {
+        min-height: 100vh;
+        text-align: center;
+    }
+     .carDefin {
+                position: relative;
+                width: 18rem;
+                border: 1px solid black;
+                border-radius: 5px;
+                text-align: center;
+            }
+
+            .contenedor {
+                display: flex;
+                flex-flow: wrap;
+                justify-content: space-around;
+                border-radius: 5px;
+            }
+</style>
+
+<div class="jumbotron">
+    <h1>Lista en carrito</h1>
+      {{#if existenProductos}} 
+            <br>     
+            <div class="contenedor">
+                {{#each productos}}                   
+                    <div class="carDefin">
+                        <p class="card-text">ID Carrito: {{idcar}}</p>
+                        <img class="card-img-top" src=/{{thumbnail}} alt="not found">
+                        <div class="card-body">
+                            <h5 class="card-title">{{title}}</h5>
+                            <p class="card-text">Descripcion: {{descripcion}}
+                            </p>
+                            <p class="card-text">PRECIO $ {{price}}</p>
+                            <p class="card-text">STOCK: {{stock}}
+                            </p>
+                            <p class="card-text" style="font-size: 10px;">Codigo: {{codigo}}
+                            </p>
+                            {{#if true}}
+                            <a class="btn btn-sm btn-danger" onclick="borrarCart({{idcar}})" >BORRAR CARRITO</a>
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/each}}           
+            </div>        
+        {{else}}  
+            <h3 class="alert alert-warning">No se encontraron productos</h3>
+    {{/if}} 
+    <br><hr>
+    {{#if true}}
+      <a class="btn btn-sm btn-warning" href="/modifyProducto.html">MODIFICAR PRODUCTOS</a>
+    {{/if}}
+    <a href="/"><button class="btn btn-success">Ir a cargar Productos</button></a>
+</div>

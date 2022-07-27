@@ -1,0 +1,11 @@
+.styloP {
+    font-style: italic;
+    color:green;
+}
+.styloMail {
+    font-weight: bold;
+    color: blue;
+}
+.styloFecha {
+    color: brown;
+}

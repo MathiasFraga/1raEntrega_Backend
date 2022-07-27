@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1ra Entrega proyecto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="css.css">
+</head>
+
+<body style="background-image: url('imagenes/background.jpg');background-size:100%;">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand">
+                <img src="/mern.png" width="100" height="50" class="d-inline-block" alt=""> Tienda </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Carga de Productos...<i class="fa fa-2x fa-upload"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/api/productos/listar">Lista de Productos...<i class="fa fa-2x fa-list-ul"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fa fa-2x fa-shopping-cart" href="/api/carrito/listar"></a> 
+                </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container mt-3">
+        <h1 class="text-center text-light">Modificacion de Productos</h1>
+        <form class="p-2" action="" method="" id="modifyProducto">
+            <div class="form-group col-md-4">
+                <label class="text-light" for="exampleInputEmail1">Id</label>
+                <input type="number" class="form-control" name="id" id="id" placeholder="Ingresar ID a modificar">
+            </div>
+            <div class="form-group col-md-4">
+                <label class="text-light" for="exampleInputEmail1">Nombre de producto</label>
+                <input type="text" class="form-control" name="title" id="name" placeholder="Ingresar nombre">
+            </div>
+            <div class="form-group col-md-6">
+                <label class="text-light" for="exampleInputEmail1">Descripción</label>
+                <input type="text" class="form-control" name="descripcion" id="descripcion"
+                    placeholder="Ingresar descripción">
+            </div>
+            <div class="form-group col-md-6">
+                <label class="text-light" for="exampleInputEmail1">Código</label>
+                <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Ingresar código">
+            </div>
+            <div class="form-group col-md-6">
+                <label class="text-light" for="exampleInputEmail1">Stock</label>
+                <input type="number" class="form-control" name="stock" id="stock" placeholder="Ingresar stock">
+            </div>
+            <div class="form-group col-md-6">
+                <label class="text-light" for="exampleInputEmail1">Precio</label>
+                <input type="text" class="form-control" name="price" id="price" placeholder="Ingresar precio">
+            </div>
+            <div class="form-group col-md-6">
+                <div class="custom-file">
+                    <input type="file" name="thumbnail" class="custom-file-input" id="thumb"
+                        placeholder="Ingresar thumbnail">
+                    <label class="custom-file-label">Seleccionar imagen</label>
+                </div>
+            </div>
+            <button class="btn btn-primary text-center m-2">Enviar</button>
+        </form>
+
+        <div id="tablaDinamica">
+        </div>
+    </div>
+
+    <script src="/mainModify.js"></script>
+</body>
+
+</html>

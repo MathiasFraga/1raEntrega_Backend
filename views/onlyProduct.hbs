@@ -1,0 +1,63 @@
+<script>
+
+const addToCart = (id) => {
+    fetch('/api/carrito/guardar/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => console.log("agregado"))
+            .catch((e) => console.log("error: ", e));
+    }
+
+</script>        
+        
+        <style>
+            h1 {
+                color: blue;
+            }
+
+            .carDefin {
+                position: relative;
+                width: 16rem;
+                border: 1px solid black;
+                border-radius: 5px;
+                text-align: center;
+                background-color: rgb(172, 208, 240);
+            }
+
+            .contenedor {
+                display: flex;
+                flex-flow: wrap;
+                justify-content: space-around;
+                border-radius: 5px;
+            }
+        </style>
+        <h1 class="text-center">Producto Seleccionado</h1>
+        <hr>
+        {{#if onlyAProduct}} 
+                <div class="contenedor">
+                    <div class="carDefin">
+                        <p class="card-text">ID Producto: {{producto.id}}</p>
+                        <img class="card-img-top" src=/{{producto.thumbnail}} alt="not found">
+                        <div class="card-body">
+                            <h5 class="card-title">{{producto.title}}</h5>
+                            <hr>
+                            <p class="card-text">DESCRIPCION</p><p>{{producto.descripcion}}
+                            </p>
+                            <hr>
+                            <p class="card-text">PRECIO $ {{producto.price}}</p>
+                            <hr>
+                            <p class="card-text">STOCK: {{producto.stock}}
+                            </p>
+                            <hr>
+                            <p class="card-text" style="font-size: 10px;">Codigo: {{producto.codigo}}
+                            </p>             
+                            <a class="btn btn-sm btn-info" onclick="addToCart({{producto.id}})"> AGREGAR PRODUCTO </a>
+                        </div>
+                    </div>
+               </div>
+        {{else}}  
+        <h3 class="alert alert-warning">No se encontro el producto con el ID solicitado</h3>
+    {{/if}}
